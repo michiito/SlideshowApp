@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController{
     @IBOutlet weak var imageview: UIImageView!
     @IBOutlet weak var nextimage: UIButton!
     @IBOutlet weak var backimage: UIButton!
@@ -28,8 +28,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         imageview.image = images[0]
+        
     }
-    
+        
     @IBAction func nextimage(_ sender: Any) {
         if imageIndex == 2{
             imageIndex = 0
@@ -78,12 +79,20 @@ class ViewController: UIViewController {
         let resultViewController:ResultViewController = segue.destination as! ResultViewController
         
         resultViewController.image = images[imageIndex]
+        
+        if tapcount % 2 == 0{
+            self.timer.invalidate()
+            
+            backimage.isEnabled = true
+            nextimage.isEnabled = true
+            
+            startstop.setTitle("再生", for: .normal)
+        }
     }
     
     @IBAction func unwind(_ segue: UIStoryboardSegue){
         
     }
-    
     
 
 }
